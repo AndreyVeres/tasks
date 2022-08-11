@@ -142,9 +142,121 @@
 
 
 
+{
+    const nums = [4, 1, 2, 3]
+    var sortEvenOdd = function (nums) {
 
 
 
+        return nums.sort()
+    };
+}
+
+
+{
+    let nums = [1, 2, 3, 3, 3, 4, 5, 5]
+
+    function countNums(nums) {
+
+        const counter = {}
+
+        for (let i = 0; i < nums.length; i++) {
+            if (counter[nums[i]]) {
+                counter[nums[i]]++
+            } else {
+                counter[nums[i]] = 1
+            }
+        }
+        let result = []
+        for (let key in counter) {
+            result.push(key)
+        }
+
+        result.sort((a, b) => counter[b] - counter[a])
+        return result[0]
+    }
+
+    console.log(countNums(nums))
+}
+
+
+
+{
+    const nums1 = [1, 2, 2, 1]
+    const nums2 = [2, 2]
+
+    function insersect(arr1, arr2) {
+        let length = Math.max(arr1.length, arr2.length)
+        let result = []
+        for (let i = 0; i < length; i++) {
+            let current = arr1[i]
+            if (arr2.includes(current)) {
+                result.push(current)
+            }
+        }
+
+        return result
+    }
+    console.log(insersect(nums1, nums2))
+}
+
+{
+    let nums = [1, 2, 3, 4, 0]
+    let index = [0, 1, 2, 3, 0]
+    Вывод: [0, 4, 1, 3, 2]
+    var createTargetArray = function (nums, index) {
+        let result = []
+        for (let i = 0; i < nums.length; i++) {
+            result.splice(index[i], 0, nums[i])
+        }
+        return result
+    };
+    console.log(createTargetArray(nums, index))
+}
+
+
+{
+    const matrix = [
+        [3, 2, 3, 4],
+        [5, 3, 2, 3],
+        [9, 5, 3, 2]]
+    let matrix2 = [[1, 2, 3, 4], [5, 1, 2, 3], [9, 5, 1, 2]]
+
+    function isToeplitzMatrix(matrix) {
+        for (let i = 0; i < matrix.length - 1; i++) {
+            for (let j = 0; j < matrix[0].length - 1; j++) {
+                if (matrix[i][j] !== matrix[i + 1][j + 1]) {
+                    return false
+                }
+            }
+        }
+        return true
+    }
+
+
+
+
+    console.log(isToeplitzMatrix(matrix2))
+}
+
+
+
+{
+    let list1 = [1, 2, 4]
+    let list2 = [1, 3, 4]
+
+    function mergeTwoList(list1, list2) {
+        let result = []
+        while (list1.length || list2.length) {
+            result.push(list1.shift())
+            result.push(list2.shift())
+        }
+
+        return result
+    }
+
+    console.log(mergeTwoList(list1, list2))
+}
 
 
 
