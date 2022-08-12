@@ -261,5 +261,230 @@
 
 
 
+{
+    //     Дан массив nums.Мы определяем текущую сумму массива как  runningSum[i] = sum(nums[0]…nums[i]).
+    // Вернуть текущую сумму nums.
+    const nums = [1, 2, 3, 4, 50]
+
+    function runningSum(nums) {
+        let result = []
+        nums.reduce((acc, current) => {
+            acc += current
+            result.push(acc)
+            return acc
+        }, 0)
+
+        return result
+    }
+
+    console.log(runningSum(nums))
+}
+
+
+{
+    //     Учитывая массив целых чисел nums, вычислите индекс поворота этого массива.
+    // Сводной индекс — это индекс, в котором сумма всех чисел строго слева от индекса равна сумме всех чисел строго справа от индекса.
+    // Если индекс находится на левом краю массива, то левая сумма получается 0потому, что слева нет элементов. Это также относится к правому краю массива.
+    // Возвращает самый левый опорный индекс . Если такого индекса не существует, вернуть -1.
+
+
+    const nums = [2, 1, -1]
+
+    function pivotIndex(nums) {
+        let left = 0;
+        let right = nums.length - 1;
+        let sumLeft = 0;
+        let sumRight = 0;
+
+        while (left !== right) {
+
+            if (sumLeft > sumRight) {
+                sumRight += nums[right]
+                right--
+            } else {
+                sumLeft += nums[left]
+                left++
+            }
+
+        }
+
+        return sumLeft === sumRight ? left : -1
+    }
+    console.log(pivotIndex(nums))
+
+}
+
+
+{
+
+    const nums = [2, 1, 2]
+    const pivotIndex = function (nums) {
+        let sum = nums.reduce((acc, item) => {
+            return acc += item;
+        }, 0)
+
+        let leftSum = 0;
+        for (let i = 0; i < nums.length; i++) {
+            if (sum - nums[i] - leftSum === leftSum) {
+                return i
+            }
+
+            leftSum += nums[i]
+        }
+
+        return -1
+    };
+
+    console.log(pivotIndex(nums))
+}
+
+
+{
+    //     Учитывая массив целых чисел nums и целое число target, верните индексы двух чисел так, чтобы они составляли в суммеtarget.
+    // Вы можете предположить, что каждый вход будет иметь ровно одно решение, и вы не можете использовать один и тот же элемент дважды.
+    // Вы можете вернуть ответ в любом порядке.
+
+
+
+    function twoSum(nums, target) {
+        let final = [];
+        for (let i = 0; i < nums.length; i++) {
+            let j = i + 1;
+
+            while (j < nums.length) {
+                if (nums[i] + nums[j] === target) {
+                    final.push(i);
+                    final.push(j);
+                    return final;
+                }
+                j++;
+            }
+        }
+
+    }
+
+    console.log(twoSum([3, 2, 4]
+        , 6))
+}
+
+
+{
+    //     Given a sorted array of distinct integers and a target value, return
+    //      the index if the target is found. If not, return the index where it would be if it were inserted in order.
+    // You must write an algorithm with O(log n) runtime complexity.
+
+    const nums = [1, 3, 5, 6]
+    let target = 5
+
+    function searchInsert(nums, target) {
+        if (target < nums[0]) return 0
+        for (let i = 0; i < nums.length; i++) {
+            if (nums[i] === target) {
+                return i
+            }
+            if (nums[i + 1] !== undefined) {
+                if (nums[i] < target && target < nums[i + 1]) {
+                    return i + 1
+                }
+            }
+            else {
+                return i + 1;
+            }
+
+        }
+    }
+
+
+
+}
+
+
+
+
+
+
+{
+    let s = 'eggg'
+    let t = 'aeee'
+    var isIsomorphic = function (s, t) {
+        let sMap = {}
+        let tMap = {}
+
+        for (let i = 0; i < s.length; i++) {
+            let a = s.charAt(i) //e
+            let b = t.charAt(i) //a
+
+            if (sMap[a] !== tMap[b]) {
+                return false
+            }
+
+            sMap[a] = i  //e : 1
+            tMap[b] = i  //a : 1
+        }
+        console.log(sMap)
+        console.log(tMap)
+        return true
+    };
+
+    console.log(isIsomorphic(s, t))
+}
+
+
+
+
+
+{
+
+    const board = [
+        ["o", "a", "a", "n"]
+        , ["e", "t", "a", "e"]
+        , ["i", "h", "k", "r"]
+        , ["i", "f", "l", "v"]
+    ]
+
+
+    const words = ["oath", "pea", "eat", "rain"]
+
+    function findWords(board, words) {
+        const latter = 0
+        const word = 0
+        let result = []
+        let firstLatters = words.map(item => item.slice(0, 1)).join('')
+
+        for (let R = 0; R < board.length; R++) {
+            for (let C = 0; C < board[0].length; C++) {
+                if (firstLatters.includes(board[R][C])) {
+
+                }
+            }
+        }
+    }
+
+    findWords(board, words)
+}
+
+
+{
+    let s = "ab"
+
+    let t = "abab"
+
+    var isSubsequence = function (s, t) {
+        if (s == "" && t == "") {
+            return true
+        }
+        let left = 0;
+        for (let i = 0; i < t.length; i++) {
+            if (s[left] === t[i]) {
+                left++
+            }
+            if (left >= s.length) {
+                return true
+            }
+        }
+        return false;
+    }
+    console.log(isSubsequence(s, t))
+};
 
 
