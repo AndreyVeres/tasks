@@ -488,3 +488,17 @@
 };
 
 
+{
+
+    let l1 = [9,9,9,9,9,9,9]
+    let l2 = [9,9,9,9]
+    console.log(Array.isArray((parseInt(l1.reverse().join('')) + parseInt(l2.reverse().join('')) + '').split('')))
+    function addTwoNumbers(l1, l2) {
+        return ((parseInt(l1.reverse().join('')) + parseInt(l2.reverse().join('')) + '').split('')).reverse()
+
+
+    }
+    console.log(addTwoNumbers(l1, l2))
+
+}
+
