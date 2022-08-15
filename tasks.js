@@ -317,22 +317,21 @@
 
 {
 
-    const nums = [2, 1, 2]
+    const nums = [2, 1, 3, 1, 2]
     const pivotIndex = function (nums) {
         let sum = nums.reduce((acc, item) => {
             return acc += item;
         }, 0)
 
         let leftSum = 0;
+
         for (let i = 0; i < nums.length; i++) {
-            if (sum - nums[i] - leftSum === leftSum) {
+            if (sum - leftSum - nums[i] === leftSum) {
                 return i
             }
-
             leftSum += nums[i]
-        }
 
-        return -1
+        }
     };
 
     console.log(pivotIndex(nums))
@@ -414,19 +413,19 @@
             let a = s.charAt(i) //e
             let b = t.charAt(i) //a
 
+            sMap[a] = i  //e : 1
+            tMap[b] = i  //a : 1
             if (sMap[a] !== tMap[b]) {
                 return false
             }
-
-            sMap[a] = i  //e : 1
-            tMap[b] = i  //a : 1
+            console.log(sMap[a])
         }
-        console.log(sMap)
+
         console.log(tMap)
         return true
     };
 
-    console.log(isIsomorphic(s, t))
+
 }
 
 
@@ -490,8 +489,8 @@
 
 {
 
-    let l1 = [9,9,9,9,9,9,9]
-    let l2 = [9,9,9,9]
+    let l1 = [9, 9, 9, 9, 9, 9, 9]
+    let l2 = [9, 9, 9, 9]
     console.log(Array.isArray((parseInt(l1.reverse().join('')) + parseInt(l2.reverse().join('')) + '').split('')))
     function addTwoNumbers(l1, l2) {
         return ((parseInt(l1.reverse().join('')) + parseInt(l2.reverse().join('')) + '').split('')).reverse()
@@ -501,4 +500,72 @@
     console.log(addTwoNumbers(l1, l2))
 
 }
+
+
+{
+    // Given a string s, find the length of the longest substring without repeating characters.
+    let s = "pwwkew"
+
+
+
+    function lengthOfLongestSubstring(s) {
+        let arr = ''
+
+        for (let i = 0; i < s.length; i++) {
+            if (!arr.includes(s[i])) {
+                arr += s[i]
+            }
+        }
+
+        while (true) {
+
+        }
+
+
+
+    }
+
+    console.log(lengthOfLongestSubstring(s))
+
+}
+
+{
+    // Given the head of a singly linked list, reverse the list, and return the reversed list. 
+
+    const arr = [1, 2, 3, 4, 5]
+    function Node(val) {
+        this.val = val;
+        this.next = null;
+    };
+
+    function LinkedList() {
+        this.head = null;
+        this.insert = function (val) {
+            let node = new Node(val);
+            if (this.head === null) {
+                this.head = node;
+            } else {
+                node.next = this.head;
+                this.head = node;
+            }
+            return this
+        }
+    }
+    var reverseList = function (head) {
+        let temp = head;
+        let output = new LinkedList();
+
+        while (temp) {
+            output.insert(temp.val);
+            temp = temp.next;
+        }
+
+        return output.head;
+    };
+
+    console.log(reverseList(1, 2))
+}
+
+
+
 
