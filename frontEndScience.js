@@ -202,3 +202,43 @@
 
     console.log(validBrackets(s))
 }
+
+
+{
+
+    //кирпичная стена
+    // 111 | 222222 | 222222 | 111 
+    // 333333333 | 111 | 222222 
+    // 111 | 333333333 | 333333 
+    const wall = [
+        [1, 2, 2, 1],
+        [1, 2, 3],
+        [1, 3, 2],
+        [2, 4],
+        [3, 1, 2],
+        [1, 3, 1, 1]
+    ]
+
+    function bricks(wall) {
+
+        let map = {}
+        let max = 0;
+
+        wall.forEach(row => {
+            let sum = 0;
+            for (let i = 0; i < row.length - 1; i++) {
+                sum += row[i]
+                map[sum] = map[sum] ? map[sum] + 1 : 1;
+                max = Math.max(map[sum], max)
+            }
+        })
+
+        console.log(map)
+        return wall.length - max
+    }
+
+    console.log(bricks(wall))
+   
+}
+
+
