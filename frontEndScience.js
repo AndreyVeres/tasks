@@ -238,7 +238,45 @@
     }
 
     console.log(bricks(wall))
-   
+
 }
+
+
+{
+    // 9. Palindrome Number
+    // Given an integer x, return true if x is palindrome integer.
+    // An integer is a palindrome when it reads the same backward as forward.
+    // For example, 121 is a palindrome while 123 is not.
+    const input1 = 131353131
+    const input2 = -121
+
+
+
+    // function isPalindrome(x) {
+    //     return x.toString().split('').reverse().join('') === x.toString();
+    // }
+
+    function isPalindrome(x) {
+        if (x < 0) return false;
+        if (x < 10) return true;
+        if (x % 10 === 0) return false
+        let reverse = 0;
+
+        while (x > reverse) {
+            console.log(x, reverse)
+            reverse *= 10;
+            reverse += x % 10;
+            x = Math.trunc(x / 10)
+        }
+
+        return reverse === x || x === Math.trunc(reverse / 10)
+    }
+
+    console.log(isPalindrome(input1))
+    console.log(isPalindrome(input2))
+}
+
+
+
 
 
