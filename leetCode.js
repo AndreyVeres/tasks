@@ -186,3 +186,136 @@
 
     console.log(uniqSymbol(input1))
 }
+
+
+{
+    // 26. Remove Duplicates from Sorted Array
+    const input1 = [1, 1, 2]
+
+
+    function removeDuplicates(s) {
+        for (let i = 0; i < s
+            .length; i++) {
+            if (s[i] === s[i + 1]) {
+                s.splice(i, 1)
+                i--
+                console.log(s[i])
+            }
+        }
+
+        return s.length
+    }
+
+    console.log(removeDuplicates(input1))
+}
+
+{
+    // 1423 . Максимальное количество очков, которое можно получить за карты
+
+    const cardPoints = [1, 2, 3, 4, 5, 6, 1], k = 3
+
+    function maxScore(cards, n) {
+        let leftCards = cards.slice(0, k)
+        let rightCards = cards.slice(-k)
+        let reduseSym = (acc, item) => acc + item;
+
+        return Math.max(leftCards.reduce(reduseSym), rightCards.reduce(reduseSym))
+    }
+
+    console.log(maxScore(cardPoints))
+
+    maxScore(cardPoints)
+}
+
+{
+    const cardPoints = [1, 12, 3, 4, 5, 6, 1], k = 3
+    
+    function maxScore(cards, n) {
+        const result = []
+        let left = 0
+        let right = cards.length - 1;
+        let count = n;
+
+        while (count > 0) {
+            let maxValue = Math.max(cards[left], cards[right])
+            let nextMaxValue = Math.max(cards[left + 1] , cards[right - 1])
+            
+            let index = cards.indexOf(maxValue)
+            result.push(maxValue)
+
+            cards.indexOf(nextMaxValue) === index -1 ? left ++ : right --
+            index > cards.length / 2 ? right-- : left++
+            count--
+        }
+
+        return result.reduce ((acc , value ) => acc + value)
+    }
+
+    console.log(maxScore(cardPoints, k))
+}
+
+
+{
+    const cardPoints = [1, 12, 3, 4, 5, 6, 1], k = 3
+    
+    function maxScore(cards, n) {
+        const result = []
+        
+        let left = 0 ; 
+        let right = cards.length -1;
+
+        while(n > 0){
+            // if(cards[left] === cards[right]){
+            //     let maxNextValue = Math.max(cards[left + 1] , cards[right -1])
+            //     let index = cards.indexOf(maxNextValue)
+            //     result.push(maxNextValue)
+            //     index < cards.length / 2 ? cards.shift() : cards.pop()
+               
+              
+            // }
+            let maxValue = Math.max(cards[left] , cards[right])
+            result.push(maxValue)
+            cards.indexOf(maxValue) < cards.length / 2 ? cards.shift() : cards.pop()
+         
+            n--
+        }
+        console.log(result)
+        // return result.reduce ((acc , value ) => acc + value)
+    }
+
+    console.log(maxScore(cardPoints, k))
+}
+
+
+
+{
+    const cardPoints = [1, 12, 3, 4, 5,1, 1], k = 3
+    function maxScore(cards, n) {
+        const result = []
+        let left = 0 ; 
+        let right = cards.length -1;
+        while(n > 0){
+
+            if(cards[left] === cards[right]){
+                let leftSum = cards.splice(0 , cards.length / 2);
+                console.log(cards)
+                let rightSum =cards.length % 2 === 0 ? cards.slice( 0 , -cards.length / 2)  :  cards.slice(0 ,cards.length + 1 )
+                console.log(leftSum , rightSum)
+            }
+
+
+            let leftValue = cards[left]
+            let rightValue = cards[right]
+            if(leftValue > rightValue){
+                result.push(leftValue)
+                left +=1
+            }else{
+                result.push(rightValue)
+                right -=1
+            }
+            n--
+        }
+        return result
+    }
+    console.log(maxScore(cardPoints, k))
+}
