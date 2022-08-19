@@ -280,3 +280,23 @@
 
 
 
+{
+    //найти одинокое число
+
+    const nums = [1, 2, 3, 4, 3, 2, 1]
+    function aloneNumber(nums) {
+        let uniq =Array.from(new Set(nums)) 
+
+        let reduceSum = (a, i) => a + i
+        let sumUniq = uniq.reduce(reduceSum)
+        let originSum = nums.reduce(reduceSum)
+      
+        return (sumUniq * 2 ) - originSum
+    }
+
+   console.log(aloneNumber(nums)) 
+
+
+
+
+}
