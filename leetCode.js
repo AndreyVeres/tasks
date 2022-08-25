@@ -372,20 +372,34 @@
     const cardPoints = [11, 49, 100, 20, 86, 29, 72]
 
     const k = 4;
-    var maxScore = function(cardPoints, k) {
-        let maxScore = 0, curMaxScore = 0, counter = 0;
-        maxScore = cardPoints.slice(0, k).reduce((a,b) => a+b, 0);
-        curMaxScore = maxScore;
-        if( cardPoints.length == k ) return maxScore;
-        while(counter < k){
-            curMaxScore = curMaxScore - cardPoints[k-counter-1] + cardPoints[cardPoints.length-1-counter]
-            console.log(cardPoints[k - counter - 1] + cardPoints[cardPoints.length - 1 - counter])
-            maxScore = Math.max(maxScore, curMaxScore);
-            
-            counter++;
+    var maxScore = function (cardPoints, k) {
+        let maxScore = cardPoints.slice(0, k).reduce((acc, i) => acc + i)
+        let current = maxScore
+        let counter = 0;
+        if (cardPoints.length === k) return maxScore
+        while (counter < k) {
+            current = current - cardPoints[k - 1 - counter] + cardPoints[cardPoints.length - 1 - counter]
+            maxScore = Math.max(current, maxScore)
+            counter++
         }
-        return maxScore;
-     };
 
-     console.log(maxScore(cardPoints, k))
+        return maxScore
+    };
+
+    console.log(maxScore(cardPoints, k))
+}
+
+{
+    // 746 . Минимальная стоимость подъема по лестнице
+    const price = [1, 100, 2, 3, 3, 103, 4, 5, 104, 6]
+    const minCostClimbingStairs = (cost) => {
+        for (let i = 2; i < cost.length; i++) {
+            cost[i] = cost[i] + Math.min(cost[i - 2], cost[i - 1]);
+            console.log(cost[i])
+        }
+        // console.log(cost)
+        return Math.min(cost[cost.length - 2], cost[cost.length - 1]);
+    }
+
+    console.log(minCostClimbingStairs(price))
 }

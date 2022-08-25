@@ -285,18 +285,42 @@
 
     const nums = [1, 2, 3, 4, 3, 2, 1]
     function aloneNumber(nums) {
-        let uniq =Array.from(new Set(nums)) 
+        let uniq = new Set()
+        let sumUniq = 0
+        let originSum = 0
+        for (let i = 0; i < nums.length; i++) {
+            let current = nums[i]
 
-        let reduceSum = (a, i) => a + i
-        let sumUniq = uniq.reduce(reduceSum)
-        let originSum = nums.reduce(reduceSum)
-      
-        return (sumUniq * 2 ) - originSum
+            if (!uniq.has(current)) {
+                uniq.add(current)
+                sumUniq += current
+            }
+
+            originSum += current
+        }
+        console.log(sumUniq)
+        console.log(originSum)
+        return (sumUniq * 2) - originSum
     }
 
-   console.log(aloneNumber(nums)) 
+    console.log(aloneNumber(nums))
 
 
+
+    {
+        const nums = [1, 2, 3, 4, 3, 2, 1]
+        function aloneNumber(nums) {
+            let uniq = Array.from(new Set(nums))
+
+            let reduceSum = (a, i) => a + i
+            let sumUniq = uniq.reduce(reduceSum)
+            let originSum = nums.reduce(reduceSum)
+
+            return (sumUniq * 2) - originSum
+        }
+
+        console.log(aloneNumber(nums))
+    }
 
 
 }
