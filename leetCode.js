@@ -372,20 +372,21 @@
     const cardPoints = [11, 49, 100, 20, 86, 29, 72]
 
     const k = 4;
-    var maxScore = function(cardPoints, k) {
+    var maxScore = function (cardPoints, k) {
         let maxScore = 0, curMaxScore = 0, counter = 0;
-        maxScore = cardPoints.slice(0, k).reduce((a,b) => a+b, 0);
+        maxScore = cardPoints.slice(0, k).reduce((a, b) => a + b, 0);
         curMaxScore = maxScore;
-        if( cardPoints.length == k ) return maxScore;
-        while(counter < k){
-            curMaxScore = curMaxScore - cardPoints[k-counter-1] + cardPoints[cardPoints.length-1-counter]
+        if (cardPoints.length == k) return maxScore;
+        while (counter < k) {
+            curMaxScore = curMaxScore - cardPoints[k - counter - 1] + cardPoints[cardPoints.length - 1 - counter]
             console.log(cardPoints[k - counter - 1] + cardPoints[cardPoints.length - 1 - counter])
             maxScore = Math.max(maxScore, curMaxScore);
-            
+
             counter++;
         }
         return maxScore;
-     };
+    };
 
-     console.log(maxScore(cardPoints, k))
+    console.log(maxScore(cardPoints, k))
 }
+
