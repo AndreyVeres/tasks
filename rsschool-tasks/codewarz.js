@@ -1,3 +1,6 @@
+//         https://github.com/rolling-scopes-school/tasks/blob/master/tasks/codewars/Codewars1-2022Q1.md
+
+
 
 //   NUMBERS , STRING
 //================================================
@@ -272,13 +275,48 @@
     [2, 1, 2]]))
 
     console.log(getLengthOfMissingArray([[0, 2, 3],
-        [2, 1, 1, 3],
-        [1, 0, 2, 1, 0],
-        [2, 2, 1, 1, 1, 4, 2, 4],
-        [3, 2, 4, 1, 4, 0, 4]]))
-        console.log(getLengthOfMissingArray([[null], [null, null, null]]))
-        console.log(getLengthOfMissingArray([[5, 2, 9], [4, 5, 1, 1], [1], [5, 6, 7, 8, 9]]))
-        
-        console.log(getLengthOfMissingArray([['a', 'a', 'a'], ['a', 'a'], ['a', 'a', 'a', 'a'], ['a'], ['a', 'a', 'a', 'a', 'a', 'a']]))
+    [2, 1, 1, 3],
+    [1, 0, 2, 1, 0],
+    [2, 2, 1, 1, 1, 4, 2, 4],
+    [3, 2, 4, 1, 4, 0, 4]]))
+    console.log(getLengthOfMissingArray([[null], [null, null, null]]))
+    console.log(getLengthOfMissingArray([[5, 2, 9], [4, 5, 1, 1], [1], [5, 6, 7, 8, 9]]))
+
+    console.log(getLengthOfMissingArray([['a', 'a', 'a'], ['a', 'a'], ['a', 'a', 'a', 'a'], ['a'], ['a', 'a', 'a', 'a', 'a', 'a']]))
+}
+
+// https://www.codewars.com/kata/pair-of-gloves 
+{
+    function numberOfPairs(gloves) {
+        let map = {}
+        let counter = 0
+        for (let i = 0; i < gloves.length; i++) {
+            let current = gloves[i]
+            if (map[current]) {
+                map[current] += 1
+            } else {
+                map[current] = 1
+            }
+        }
+
+        for (let value of Object.values(map)) {
+            helper(value)
+        }
+        function helper(num) {
+            if (num - 2 >= 0) {
+                counter += 1;
+                helper(num - 2)
+            }
+        }
+        return counter
+    }
+
+    let input3 = ["red", "green", "red", "blue", "blue"]
+    let input1 = ["red", "red", "red", "red", "red", "red"]
+    // let input2 = ["Navy", "Navy", "Silver", "Olive", "Teal", "Navy", "Purple", "Teal", "Olive", "Fuchsia", "Red", "Fuchsia", "Black", "Navy", "Black", "Red", "Yellow", "Fuchsia",
+    //     "Purple", "Red", "Purple", "Yellow", "Green", "Olive", "Aqua", "Black", "White", "Purple", "Blue", "Aqua", "Maroon", "Lime", "Maroon", "Silver"]
+
+    console.log(numberOfPairs(input3))
+    console.log(numberOfPairs(input1))
 }
 
