@@ -320,3 +320,72 @@
     console.log(numberOfPairs(input1))
 }
 
+
+// FUNCTIONS
+//=========================================
+// https://www.codewars.com/kata/javascript-mathematician
+{
+    {
+        function calculate() {
+            let current = 0
+            for (let value of Object.values(arguments)) {
+                current += value
+            }
+            return function () {
+                let secondCurrent = 0
+                for (let value of Object.values(arguments)) {
+                    current += value
+                }
+
+                return current + secondCurrent
+            }
+
+
+        }
+        calculate(1, 2, 3)
+        console.log(calculate(1)(1), 2);
+        console.log(calculate(1, 1)(1), 3);
+        console.log(calculate(1, 1)(1, -1), 2);
+        console.log(calculate(2, 4)(3, 7, 1), 17);
+    }
+}
+
+
+//https://www.codewars.com/kata/nuclear-missile-manager
+{
+    function launchAll(launchMissile) {
+        for (let i = 0; i < 5; i++) {
+            setTimeout(function () {
+                launchMissile(i);
+            }, i * 1000);
+        }
+    }
+}
+//https://www.codewars.com/kata/closures-and-scopes
+{
+    function createFunctions(n) {
+        var callbacks = [];
+
+        for (let i = 0; i < n; i++) {
+            callbacks.push(function () {
+                return i;
+            });
+        }
+
+        return callbacks;
+    }
+}
+
+//https://www.codewars.com/kata/can-you-keep-a-secret
+{
+    function createSecretHolder(secret) {
+       
+    }
+
+
+    obj = createSecretHolder(5)
+    console.log(obj)
+    console.log(obj.getSecret())// returns 5
+    console.log(obj.setSecret(2))
+    console.log(obj.getSecret())// returns 2
+}
