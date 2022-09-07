@@ -376,16 +376,87 @@
     }
 }
 
-//https://www.codewars.com/kata/can-you-keep-a-secret
+//https://www.codewars.com/kata/can-you-keep-a-secret    // --
 {
     function createSecretHolder(secret) {
-       
+        let _secret = secret
+        return {
+
+            getSecret: function () {
+                return _secret
+            },
+            setSecret: function (val) {
+                _secret = val
+            }
+        }
+
     }
 
 
     obj = createSecretHolder(5)
-    console.log(obj)
+
     console.log(obj.getSecret())// returns 5
     console.log(obj.setSecret(2))
     console.log(obj.getSecret())// returns 2
+}
+
+
+// OBJECTS
+//==================================
+{
+    //https://www.codewars.com/kata/run-length-encoding
+    {
+        let arrr = 'test string'
+        var runLengthEncoding = function (str) {
+            let result = []
+            let counter = 0;
+            for (let i = 0; i < str.length; i++) {
+                let currentResult = []
+                let currentVal = str[i]
+                if (str[i + 1] === currentVal) {
+                    counter++;
+                } else {
+                    counter++;
+                    currentResult.push(counter)
+                    currentResult.push(currentVal)
+                    result.push(currentResult)
+                    counter = 0
+                }
+            }
+            return result
+        }
+        console.log(runLengthEncoding('IIIQQQKLNMMNNUUUOOEEECBB'))
+
+    }
+
+
+    //https://www.codewars.com/kata/my-language-skills
+    {
+        function myLanguages(results) {
+            let result = []
+            for (let item in results) {
+                if (results[item] >= 60) {
+                    result.push(item)
+                }
+
+            }
+            let sorter = result.sort((a, b) => {
+                if (results[a] > results[b]){
+                    return 1
+                }
+                if (results[a] < results[b]){
+                    return -1
+                }
+                if (results[a] === results[b]){
+                    return 0
+                }
+            })
+            return result
+        }
+
+
+        console.log(myLanguages({ "Java": 10, "Ruby": 80, "Python": 65 }), ["Ruby", "Python"])
+        console.log(myLanguages({ "Hindi": 60, "Greek": 71, "Dutch": 93 }), ["Dutch", "Greek", "Hindi"])
+        console.log(myLanguages({ "C++": 50, "ASM": 10, "Haskell": 20 }), [])
+    }
 }
