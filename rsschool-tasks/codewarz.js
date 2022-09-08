@@ -2,7 +2,7 @@
 
 
 
-//   NUMBERS , STRING
+//  ============== NUMBERS , STRING ==============       2
 //================================================
 {
     //  https://www.codewars.com/kata/highest-and-lowest
@@ -220,13 +220,13 @@
     }
 }
 
-// ARRAYS
+// ==================== ARRAYS ===================      3
 // ===============================================
 {
     // https://www.codewars.com/kata/head-tail-init-and-last  // НЕ ПОНЯЛ УСЛОВИЕ
     { }
 
-    // https://www.codewars.com/kata/array-deep-count
+    // https://www.codewars.com/kata/array-deep-count          ++
     {
         function deepCount(a) {
             let count = 0
@@ -325,90 +325,107 @@
 }
 
 
-// FUNCTIONS
+// ================= FUNCTIONS ============                1
 //=========================================
-// https://www.codewars.com/kata/javascript-mathematician
+// https://www.codewars.com/kata/javascript-mathematician       ++
 {
     {
-        function calculate() {
-            let current = 0
-            for (let value of Object.values(arguments)) {
-                current += value
-            }
-            return function () {
-                let secondCurrent = 0
+        {
+            function calculate() {
+                let current = 0
                 for (let value of Object.values(arguments)) {
                     current += value
                 }
+                return function () {
+                    let secondCurrent = 0
+                    for (let value of Object.values(arguments)) {
+                        current += value
+                    }
 
-                return current + secondCurrent
+                    return current + secondCurrent
+                }
+
+
             }
-
-
-        }
-        calculate(1, 2, 3)
-        console.log(calculate(1)(1), 2);
-        console.log(calculate(1, 1)(1), 3);
-        console.log(calculate(1, 1)(1, -1), 2);
-        console.log(calculate(2, 4)(3, 7, 1), 17);
-    }
-}
-
-
-//https://www.codewars.com/kata/nuclear-missile-manager
-{
-    function launchAll(launchMissile) {
-        for (let i = 0; i < 5; i++) {
-            setTimeout(function () {
-                launchMissile(i);
-            }, i * 1000);
+            calculate(1, 2, 3)
+            console.log(calculate(1)(1), 2);
+            console.log(calculate(1, 1)(1), 3);
+            console.log(calculate(1, 1)(1, -1), 2);
+            console.log(calculate(2, 4)(3, 7, 1), 17);
         }
     }
-}
-//https://www.codewars.com/kata/closures-and-scopes
-{
-    function createFunctions(n) {
-        var callbacks = [];
 
-        for (let i = 0; i < n; i++) {
-            callbacks.push(function () {
-                return i;
-            });
-        }
 
-        return callbacks;
-    }
-}
-
-//https://www.codewars.com/kata/can-you-keep-a-secret    // --
-{
-    function createSecretHolder(secret) {
-        let _secret = secret
-        return {
-
-            getSecret: function () {
-                return _secret
-            },
-            setSecret: function (val) {
-                _secret = val
+    //https://www.codewars.com/kata/nuclear-missile-manager         ++
+    {
+        function launchAll(launchMissile) {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(function () {
+                    launchMissile(i);
+                }, i * 1000);
             }
         }
+    }
+    //https://www.codewars.com/kata/closures-and-scopes            ++
+    {
+        function createFunctions(n) {
+            var callbacks = [];
 
+            for (let i = 0; i < n; i++) {
+                callbacks.push(function () {
+                    return i;
+                });
+            }
+
+            return callbacks;
+        }
     }
 
+    //https://www.codewars.com/kata/can-you-keep-a-secret     --
+    {
+        function createSecretHolder(secret) {
+            let _secret = secret
+            return {
 
-    obj = createSecretHolder(5)
+                getSecret: function () {
+                    return _secret
+                },
+                setSecret: function (val) {
+                    _secret = val
+                }
+            }
 
-    console.log(obj.getSecret())// returns 5
-    console.log(obj.setSecret(2))
-    console.log(obj.getSecret())// returns 2
+        }
+
+
+        obj = createSecretHolder(5)
+
+        console.log(obj.getSecret())// returns 5
+        console.log(obj.setSecret(2))
+        console.log(obj.getSecret())// returns 2
+    }
+
 }
 
-
-// OBJECTS
+// ============ OBJECTS ============
 //==================================
 {
-    //https://www.codewars.com/kata/run-length-encoding
+
+    //https://www.codewars.com/kata/my-language-skills  +++
+    {
+        function myLanguages(languages) {
+            let result = []
+            for (let value in languages) {
+                if (languages[value] >= 60) result.push(value)
+            }
+            return result.sort((a, b) => languages[b] - languages[a])
+        }
+        console.log(myLanguages({ "Java": 10, "Ruby": 80, "Python": 65 }), ["Ruby", "Python"])
+        console.log(myLanguages({ "Hindi": 60, "Greek": 71, "Dutch": 93 }), ["Dutch", "Greek", "Hindi"])
+        console.log(myLanguages({ "C++": 50, "ASM": 10, "Haskell": 20 }), [])
+    }
+
+    //https://www.codewars.com/kata/run-length-encoding +++
     {
         let arrr = 'test string'
         var runLengthEncoding = function (str) {
@@ -433,34 +450,33 @@
 
     }
 
-
-    //https://www.codewars.com/kata/my-language-skills
+    //https://www.codewars.com/kata/lets-recycle   // говно
     {
-        function myLanguages(results) {
-            let result = []
-            for (let item in results) {
-                if (results[item] >= 60) {
-                    result.push(item)
-                }
+        let a = [
+            { type: 'rotten apples', material: 'organic' },
+            { type: 'out of date yogurt', material: 'organic', secondMaterial: 'plastic' },
+            { type: 'wine bottle', material: 'glass', secondMaterial: 'paper' },
+            { type: 'amazon box', material: 'paper' },
+            { type: 'beer bottle', material: 'glass', secondMaterial: 'paper' }
+        ];
+        function recycle(array) {
+            let paper = [], glass = [], organic = [], plastic = [];
 
-            }
-            let sorter = result.sort((a, b) => {
-                if (results[a] > results[b]){
-                    return 1
-                }
-                if (results[a] < results[b]){
-                    return -1
-                }
-                if (results[a] === results[b]){
-                    return 0
-                }
-            })
-            return result
+            array.forEach(obj => {  
+              if(obj.material === 'paper' || obj.secondMaterial === 'paper' ) paper.push(obj.type)
+              if(obj.material === 'glass' || obj.secondMaterial === 'glass') glass.push(obj.type)
+              if(obj.material === 'organic' || obj.secondMaterial === 'organic') organic.push(obj.type)
+              if(obj.material === 'plastic' || obj.secondMaterial === 'plastic') plastic.push(obj.type)
+            });
+          
+            return [paper, glass, organic, plastic]
+
         }
-
-
-        console.log(myLanguages({ "Java": 10, "Ruby": 80, "Python": 65 }), ["Ruby", "Python"])
-        console.log(myLanguages({ "Hindi": 60, "Greek": 71, "Dutch": 93 }), ["Dutch", "Greek", "Hindi"])
-        console.log(myLanguages({ "C++": 50, "ASM": 10, "Haskell": 20 }), [])
+        console.log(recycle(a))
     }
+
+
+
+
 }
+
