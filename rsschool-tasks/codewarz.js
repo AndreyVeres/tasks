@@ -462,13 +462,13 @@
         function recycle(array) {
             let paper = [], glass = [], organic = [], plastic = [];
 
-            array.forEach(obj => {  
-              if(obj.material === 'paper' || obj.secondMaterial === 'paper' ) paper.push(obj.type)
-              if(obj.material === 'glass' || obj.secondMaterial === 'glass') glass.push(obj.type)
-              if(obj.material === 'organic' || obj.secondMaterial === 'organic') organic.push(obj.type)
-              if(obj.material === 'plastic' || obj.secondMaterial === 'plastic') plastic.push(obj.type)
+            array.forEach(obj => {
+                if (obj.material === 'paper' || obj.secondMaterial === 'paper') paper.push(obj.type)
+                if (obj.material === 'glass' || obj.secondMaterial === 'glass') glass.push(obj.type)
+                if (obj.material === 'organic' || obj.secondMaterial === 'organic') organic.push(obj.type)
+                if (obj.material === 'plastic' || obj.secondMaterial === 'plastic') plastic.push(obj.type)
             });
-          
+
             return [paper, glass, organic, plastic]
 
         }
@@ -479,4 +479,84 @@
 
 
 }
+
+
+// ============ Date ==============
+// ================================
+{
+
+    //https://www.codewars.com/kata/the-coupon-code 
+    {
+        function checkCoupon(enteredCode, correctCode, currentDate, expirationDate) {
+            
+        }
+
+        console.log(checkCoupon('123', '123', 'September 5, 2014', 'October 1, 2014'), true);
+        console.log(checkCoupon('123a', '123', 'September 5, 2014', 'October 1, 2014'), false);
+    }
+    //https://www.codewars.com/kata/unlucky-days
+    {
+        function unluckyDays(year) {
+            let fridays = 0;
+            for (let month = 0; month < 12; month++) {
+                let date = new Date(year, month, 13)
+                if (date.getDay() === 5) fridays++
+            }
+            return fridays
+        }
+
+        console.log(unluckyDays(2015))
+    }
+
+    // https://www.codewars.com/kata/human-readable-duration-format
+    {
+        function formatDuration(seconds) {
+            if (!seconds) return 'now';
+            let localSeconds = seconds;
+            let year = 0
+            let day = 0
+            let hour = 0;
+            let minute = 0
+            let duration = []
+            const stringBuilder = (value, label) => `${value} ${value > 1 ? label + 's' : label}`
+            if (localSeconds >= 31536000) {
+                year = Math.floor(localSeconds / 31536000)
+                localSeconds = localSeconds - ((year * 31536000))
+            }
+            if (localSeconds >= 86400) {
+                day = Math.floor(localSeconds / 86400)
+                localSeconds = localSeconds - ((day * 86400))
+            }
+            if (localSeconds >= 3600) {
+                hour = Math.floor(localSeconds / 3600)
+                localSeconds = localSeconds - ((hour * 3600))
+            }
+            if (localSeconds >= 60) {
+                minute = Math.floor(localSeconds / 60)
+                localSeconds = localSeconds - ((minute * 60))
+            }
+            if (year) duration.push(stringBuilder(year, 'year'))
+            if (day) duration.push(stringBuilder(day, 'day'))
+            if (hour) duration.push(stringBuilder(hour, 'hour'))
+            if (minute) duration.push(stringBuilder(minute, 'minute'))
+            if (localSeconds) duration.push(stringBuilder(localSeconds, 'second'))
+            if (duration.length > 1) {
+                let last = duration.pop()
+                return duration.join(', ') + ' and ' + last
+            }
+            return duration[0]
+        }
+
+
+        console.log(3600 / 60) / 60
+
+        console.log(formatDuration(1), "1 second");
+        console.log(formatDuration(62), "1 minute and 2 seconds");
+        console.log(formatDuration(120), "2 minutes");
+        console.log(formatDuration(3600), "1 hour");
+        console.log(formatDuration(3662), "1 hour, 1 minute and 2 seconds");
+    }
+}
+
+
 
