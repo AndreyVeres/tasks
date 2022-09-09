@@ -2,10 +2,10 @@
 
 
 
-//  ============== NUMBERS , STRING ==============       2
+//  ============== NUMBERS , STRING ==============       +++
 //================================================
 {
-    //  https://www.codewars.com/kata/highest-and-lowest
+    //  https://www.codewars.com/kata/highest-and-lowest    ++
     {
 
         function highAndLow(str) {
@@ -27,7 +27,7 @@
         highAndLow("1 9 3 4 -5"); // return "9 -5"
     }
 
-    //https://www.codewars.com/kata/disemvowel-trolls
+    //https://www.codewars.com/kata/disemvowel-trolls   ++
     {
 
 
@@ -52,7 +52,7 @@
         console.log(disemvowel("What are you, a communist?"))//, "Wht r y,  cmmnst?")
     }
 
-    //https://www.codewars.com/kata/isograms
+    //https://www.codewars.com/kata/isograms    ++
     {
         function isIsogram(str) {
             return str.length === new Set(str.toLowerCase()).size
@@ -67,7 +67,7 @@
         console.log(isIsogram(""))//, true, "an empty string is a valid isogram");
     }
 
-    //https://www.codewars.com/kata/digits-explosion
+    //https://www.codewars.com/kata/digits-explosion    ++
     {
         function explode(s) {
             let result = ''
@@ -89,7 +89,7 @@
 
     }
 
-    //https://www.codewars.com/kata/handshake-problem
+    //https://www.codewars.com/kata/handshake-problem   ++
     {
         function getParticipants(handshakes) {
             // if (handshakes = 0) return 0
@@ -117,29 +117,22 @@
     }
 
 
-    //https://www.codewars.com/kata/duplicate-encoder   //НЕ РЕШИЛ
+    //https://www.codewars.com/kata/duplicate-encoder   ++++
     {
+
         function duplicateEncode(word) {
-            let map = {}
-            let result = ''
+            word = word.toLowerCase();
+            let result = '';
 
-            for (let i = 0; i < word.length; i++) {
-                let current = word[i].toLowerCase()
-                if (map[current]) {
-                    map[current] += 1
-                } else {
-                    map[current] = 1
-                }
-
+            for (let i in word) {
+                let letter = word[i].toLowerCase();
+                result += word.indexOf(letter) != word.lastIndexOf(letter) ? ')' : '(';
             }
 
-
-            for (let i = 0; i < word.length; i++) {
-                result += map[word[i]] === 1 ? '(' : ')'
-                // console.log(map[word[i]])
-            }
-            return result
+            return result;
         }
+
+
 
         console.log(duplicateEncode("din"), "(((");
         console.log(duplicateEncode("recede"), "()()()");
@@ -174,35 +167,32 @@
     }
 
 
-    // https://www.codewars.com/kata/n-th-fibonacci    //НЕ РЕШИЛ
+    // https://www.codewars.com/kata/n-th-fibonacci    ++++
     {
         function nthFibo(n) {
-            if (n === 0) return 0
-            if (n === 1) return 1
-            if (n === 2) return 1
-            let num = 3
+            let res = n
             let a = 1;
             let b = 1;
-
-            for (let i = 3; i < n; i++) {
-                let c = a + b
-                a = b
-                b = c
-                num++
+            let fiboQ = [0, a, b];
+            while (n > 0) {
+                let c = a + b;
+                fiboQ.push(c)
+                a = b;
+                b = c;
+                n--
             }
-
-            return num
+            return fiboQ[res - 1]
         }
 
 
-        console.log(nthFibo(1), 0, "1-st Fibo");
-        console.log(nthFibo(2), 1, "2-nd Fibo");
-        console.log(nthFibo(3), 1, "3-rd Fibo");
-        console.log(nthFibo(4), 2, "4-th Fibo");
+        console.log(nthFibo(1))
+        console.log(nthFibo(2))
+        console.log(nthFibo(3))
+        console.log(nthFibo(4))
 
     }
 
-    // https://www.codewars.com/kata/multiples-of-3-or-5
+    // https://www.codewars.com/kata/multiples-of-3-or-5   ++
     {
         function solution(number) {
             let numbers = []
@@ -249,40 +239,41 @@
         console.log(deepCount([[[[[[[[[]]]]]]]]]), 8, "Expected 8")
     }
 
-    // https://www.codewars.com/kata/length-of-missing-array  // НЕ РЕШИЛ
+    // https://www.codewars.com/kata/length-of-missing-array  // +-
     {
         function getLengthOfMissingArray(arrayOfArrays) {
-            if (arrayOfArrays.length === 0) return 0
-            let min = arrayOfArrays[0].length;
-            let max = arrayOfArrays[0].length
-            let totalSum = arrayOfArrays.reduce((acc, item) => {
-                if (!isNaN(item)) return 0
-                min = Math.min(min, item.length)
-                max = Math.max(max, item.length)
-                return acc + item.length
-            }, 0)
+            const lengths =( arrayOfArrays || [] ).map(item => Array.isArray(item) ? item.length : 0).sort((a, b) => a - b)
 
-            let currentSum = 0;
-            for (let i = min; i <= max; i++) {
-                currentSum += i
+            for (let i = 0; i < lengths.length; i++) {
+                if (lengths[i] + 1 !== lengths[i + 1]) {
+                    return lengths[i] + 1
+                }
             }
+            if (lengths.includes(0)) {
+                return 0
+              }
 
-            return currentSum - totalSum
+            return 0
         }
-        console.log(getLengthOfMissingArray([[3], [1, 2, 0, 2, 2, 2], null, [4, 4], [0, 3, 0, 2], [4, 0, 1, 0, 0]]))
-        console.log(getLengthOfMissingArray([[],
-        [0],
-        [2, 1, 2]]))
+        console.log(getLengthOfMissingArray([[3],
+        [],
+        [1, 1, 1],
+        [4, 2, 3, 1, 0],
+        [2, 0, 3, 0, 0, 4, 1, 2],
+        [4, 2, 0, 0, 1, 1, 2],
+        [0, 1],
+        [3, 2, 0, 3],
+        [2, 3, 1, 3, 2, 3, 4, 2, 0],
+        [3, 0, 0, 3, 3, 1, 1, 3, 4, 4],
+        [4, 0, 1, 0, 2, 3, 4, 1, 3, 1, 0]]))
 
-        console.log(getLengthOfMissingArray([[0, 2, 3],
-        [2, 1, 1, 3],
-        [1, 0, 2, 1, 0],
-        [2, 2, 1, 1, 1, 4, 2, 4],
-        [3, 2, 4, 1, 4, 0, 4]]))
-        console.log(getLengthOfMissingArray([[null], [null, null, null]]))
-        console.log(getLengthOfMissingArray([[5, 2, 9], [4, 5, 1, 1], [1], [5, 6, 7, 8, 9]]))
+        console.log(getLengthOfMissingArray([[2, 3],
+        [],
+        [3, 3, 1]]))
 
-        console.log(getLengthOfMissingArray([['a', 'a', 'a'], ['a', 'a'], ['a', 'a', 'a', 'a'], ['a'], ['a', 'a', 'a', 'a', 'a', 'a']]))
+
+
+
     }
 
     // https://www.codewars.com/kata/pair-of-gloves 
@@ -327,8 +318,9 @@
 
 // ================= FUNCTIONS ============                1
 //=========================================
-// https://www.codewars.com/kata/javascript-mathematician       ++
+
 {
+    // https://www.codewars.com/kata/javascript-mathematician       ++
     {
         {
             function calculate() {
@@ -407,7 +399,7 @@
 
 }
 
-// ============ OBJECTS ============
+// ============ OBJECTS ============   +++
 //==================================
 {
 
@@ -481,14 +473,14 @@
 }
 
 
-// ============ Date ==============
+// ============ Date ==============       1
 // ================================
 {
 
-    //https://www.codewars.com/kata/the-coupon-code 
+    //https://www.codewars.com/kata/the-coupon-code  --
     {
         function checkCoupon(enteredCode, correctCode, currentDate, expirationDate) {
-            
+
         }
 
         console.log(checkCoupon('123', '123', 'September 5, 2014', 'October 1, 2014'), true);
