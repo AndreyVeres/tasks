@@ -242,7 +242,7 @@
     // https://www.codewars.com/kata/length-of-missing-array  // +-
     {
         function getLengthOfMissingArray(arrayOfArrays) {
-            const lengths =( arrayOfArrays || [] ).map(item => Array.isArray(item) ? item.length : 0).sort((a, b) => a - b)
+            const lengths = (arrayOfArrays || []).map(item => Array.isArray(item) ? item.length : 0).sort((a, b) => a - b)
 
             for (let i = 0; i < lengths.length; i++) {
                 if (lengths[i] + 1 !== lengths[i + 1]) {
@@ -251,7 +251,7 @@
             }
             if (lengths.includes(0)) {
                 return 0
-              }
+            }
 
             return 0
         }
@@ -316,9 +316,8 @@
 }
 
 
-// ================= FUNCTIONS ============                1
+// ================= FUNCTIONS ============                +++
 //=========================================
-
 {
     // https://www.codewars.com/kata/javascript-mathematician       ++
     {
@@ -373,12 +372,11 @@
         }
     }
 
-    //https://www.codewars.com/kata/can-you-keep-a-secret     --
+    //https://www.codewars.com/kata/can-you-keep-a-secret     ++
     {
         function createSecretHolder(secret) {
             let _secret = secret
             return {
-
                 getSecret: function () {
                     return _secret
                 },
@@ -477,10 +475,10 @@
 // ================================
 {
 
-    //https://www.codewars.com/kata/the-coupon-code  --
+    //https://www.codewars.com/kata/the-coupon-code  ++
     {
         function checkCoupon(enteredCode, correctCode, currentDate, expirationDate) {
-
+            return enteredCode === correctCode && new Date(currentDate) < new Date(expirationDate)
         }
 
         console.log(checkCoupon('123', '123', 'September 5, 2014', 'October 1, 2014'), true);
