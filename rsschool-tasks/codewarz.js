@@ -5,6 +5,38 @@
 //  ============== NUMBERS , STRING ==============       +++
 //================================================
 {
+    console.log(parseInt('DE', 16))
+    console.log(parseInt('FF', 16))
+    // https://www.codewars.com/kata/62eb800ba29959001c07dfee/train/javascript
+    {
+        function brightest(colors) {
+            let brightestColor = 0
+            let valueMax = 0
+
+            for (let i = 0; i < colors.length; i++) {
+                let color = colors[i]
+
+                let r = parseInt(color.slice(1, 3), 16)
+                let g = parseInt(color.slice(3, 5), 16)
+                let b = parseInt(color.slice(5, 7), 16)
+                let value = Math.max(r, g, b)
+
+                if (value > valueMax) {
+                    valueMax = value
+                    brightestColor = colors[i]
+                }
+
+
+            }
+            return brightestColor
+        }
+
+
+        console.log(brightest(["#001000", "#000000", "#001000"]));
+        console.log(["#ABCDEF", "#123456"], "#ABCDEF");
+        console.log(["#00FF00", "#FFFF00"], "#00FF00");
+        console.log(["#FFFFFF", "#1234FF"], "#FFFFFF");
+    }
     //  https://www.codewars.com/kata/highest-and-lowest    ++
     {
 
@@ -208,9 +240,12 @@
 
         console.log(solution(10))
     }
+
+
+
 }
 
-// ==================== ARRAYS ===================      3
+// ==================== ARRAYS ===================      2
 // ===============================================
 {
     // https://www.codewars.com/kata/head-tail-init-and-last  // НЕ ПОНЯЛ УСЛОВИЕ
@@ -239,7 +274,7 @@
         console.log(deepCount([[[[[[[[[]]]]]]]]]), 8, "Expected 8")
     }
 
-    // https://www.codewars.com/kata/length-of-missing-array  // +-
+    // https://www.codewars.com/kata/length-of-missing-array  // ++
     {
         function getLengthOfMissingArray(arrayOfArrays) {
             const lengths = (arrayOfArrays || []).map(item => Array.isArray(item) ? item.length : 0).sort((a, b) => a - b)
@@ -316,9 +351,40 @@
 }
 
 
-// ================= FUNCTIONS ============                +++
+// ================= FUNCTIONS ============                +++     ----
 //=========================================
 {
+
+    //https://www.codewars.com/kata/558ccca75f511f2b0d0000f7       ---
+    {
+        let arr = [undefined, undefined]
+
+        Array.prototype.map = function (callback, thisArg) {
+            if (this == null) throw new Error('this is null');
+            if (typeof callback !== 'function') throw new Error('it is not a function');
+
+            let context = this;
+
+            if (thisArg) {
+                context = thisArg
+            }
+            let result = new Array(context.length)
+            for (let i = 0; i < this.length; i++) {
+                if (this[i] === undefined) {
+                    result[i] = undefined
+                } else {
+                    result[i] = callback.call(context, this[i], i, this)
+                }
+            }
+            console.log(result)
+            return result
+        }
+
+
+        let newarr = arr.map(item => item += 2)
+
+        console.log(newarr)
+    }
     // https://www.codewars.com/kata/javascript-mathematician       ++
     {
         {
@@ -397,10 +463,35 @@
 
 }
 
-// ============ OBJECTS ============   +++
+// ============ OBJECTS ============   +++     ----
 //==================================
 {
 
+    // https://www.codewars.com/kata/59418db3f5c394eca80000ef   ---
+    {
+        let object = { user: { name: { first: 'John', last: 'Snow' } } };
+        function find(object, path) {
+            let search = '.'
+            let arr = path.split('.')
+            for(let i = 0 ; i < arr.length ; i ++) {
+                if(i === arr.length - 1){
+                    search += `${arr[i]}`
+                }else{
+                    search += `${arr[i]}.`
+                }
+               
+            }
+
+            console.log(search)
+            return eval(`object${search}`)
+        }
+
+
+
+        console.log(find(object, 'user.name.first'))
+
+
+    }
     //https://www.codewars.com/kata/my-language-skills  +++
     {
         function myLanguages(languages) {
@@ -471,7 +562,7 @@
 }
 
 
-// ============ Date ==============       1
+// ============ Date ==============       +++
 // ================================
 {
 
@@ -484,7 +575,7 @@
         console.log(checkCoupon('123', '123', 'September 5, 2014', 'October 1, 2014'), true);
         console.log(checkCoupon('123a', '123', 'September 5, 2014', 'October 1, 2014'), false);
     }
-    //https://www.codewars.com/kata/unlucky-days
+    //https://www.codewars.com/kata/unlucky-days ++
     {
         function unluckyDays(year) {
             let fridays = 0;
@@ -498,7 +589,7 @@
         console.log(unluckyDays(2015))
     }
 
-    // https://www.codewars.com/kata/human-readable-duration-format
+    // https://www.codewars.com/kata/human-readable-duration-format ++
     {
         function formatDuration(seconds) {
             if (!seconds) return 'now';
