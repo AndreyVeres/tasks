@@ -934,20 +934,26 @@
 
         Object.prototype.hash = function (string) {
             let paths = string.split('.');
-          
+            console.log(paths)
+            let context = this
+            let result = ''
             for (let i = 0; i < paths.length; i++) {
 
-                if (!this.hasOwnProperty(paths[i])) {
-                    return undefined
+                if (!paths[i] in this) {
+                    console.log(paths[i])
+                    return undefined;
                 }
-                
-                return eval(`${this}.${string}`)
+                result += paths[i]
             }
-         
 
+            console.log( this.paths[0])
+            // return context.paths.join('.')
         }
 
         console.log(obj.hash('person.name')) // 'joe'
+
+
+
         obj.hash('person.history.bio'); // { funFact: 'I like fishing.' }
         obj.hash('person.history.homeStreet'); // undefined
         obj.hash('person.animal.pet.needNoseAntEater'); // undefined
