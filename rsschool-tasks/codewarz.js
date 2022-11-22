@@ -473,13 +473,13 @@
         function find(object, path) {
             let search = '.'
             let arr = path.split('.')
-            for(let i = 0 ; i < arr.length ; i ++) {
-                if(i === arr.length - 1){
+            for (let i = 0; i < arr.length; i++) {
+                if (i === arr.length - 1) {
                     search += `${arr[i]}`
-                }else{
+                } else {
                     search += `${arr[i]}.`
                 }
-               
+
             }
 
             console.log(search)
@@ -640,4 +640,317 @@
 }
 
 
+// OOP CODEWARZ
 
+{
+    // https://www.codewars.com/kata/52b50a20fa0e77b304000103/train/javascript
+    {
+
+        var santa = {
+            sayHoHoHo: function () { console.log('Ho Ho Ho!') },
+            distributeGifts: function () { console.log('Gifts for all!'); },
+            goDownTheChimney: function () { console.log('*whoosh*'); }
+        };
+
+        var notSanta = {
+            sayHoHoHo: function () { console.log('Oink Oink!') }
+            // no distributeGifts() and no goDownTheChimney()
+        };
+
+
+        function isSantaClausable(obj) {
+            // if(Array.from(obj).length === 0) return false
+            // if(Object.prototype.toString().call(obj) !== '[object Object]') return false
+            console.log((Object.prototype.toString(obj) !== '[object Object]'))
+            // let funcs = ['sayHoHoHo' , 'distributeGifts','goDownTheChimney'];
+            // for(let i = 0 ; i < funcs.length ; i++) {
+            //     if (obj.hasOwnProperty(funcs[i])) return false
+            // }
+            // return true
+        }
+
+        isSantaClausable(santa); // must return TRUE
+        isSantaClausable(notSanta); // must return FALSE
+
+
+    }
+    //https://www.codewars.com/kata/513e1e47c600c93cef000001/train/javascript
+    {
+
+
+        class Animal {
+            constructor(name, type) {
+                this.type = type,
+                    this.name = name
+
+
+            }
+
+            toString() {
+                // console.log(`${this.name} is a ${this.type}`)
+                return `${this.name} is a ${this.type}`;
+            }
+        }
+
+
+        var dog = new Animal('Max', 'dog');
+        dog.toString(); // should return 'Max is a dog'
+        dog.type; // should == 'dog'
+        dog.name; // should == 'Max'
+        dog.name = 'Lassie'; // should set name to 'Lassie'
+    }
+
+
+    //https://www.codewars.com/kata/5a2cb53cee1aaef2fa000037/train/javascript
+
+    {
+
+    }
+
+
+    //https://www.codewars.com/kata/56f935002e6c0d55fa000d92/train/javascript
+
+    {
+
+
+        class Animal {
+            constructor(name, age, legs, species, status) {
+                this.name = name
+                this.age = age
+                this.legs = legs
+                this.species = species
+                this.status = status
+            }
+            introduce() {
+                console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`)
+                return `Hello, my name is ${this.name} and I am ${this.age} years old.`
+            }
+        }
+
+
+
+        class Shark extends Animal {
+            constructor(name, age, status) {
+                super(name, age, status)
+                this.legs = 0
+                this.species = "shark"
+                this.status = status
+            }
+        }
+        class Cat extends Animal {
+            constructor(name, age, status) {
+                super(name, age, status)
+                this.legs = 4
+                this.species = "cat"
+                this.status = status
+            }
+
+            introduce() {
+                return `Hello, my name is ${this.name} and I am ${this.age} years old.  Meow meow!`
+            }
+        }
+        class Dog extends Animal {
+            constructor(name, age, status, master) {
+                super(name, age, status)
+                this.master = master
+                this.legs = 4
+                this.species = "dog"
+                this.status = status
+            }
+
+            greetMaster() {
+                return `Hello ${this.master}`
+            }
+        }
+
+
+        let shark = new Dog('vasa', 23, 'asdas', 'andrey')
+        shark.greetMaster()
+
+    }
+
+
+    //https://www.codewars.com/kata/56fcc1ee45040039ab0016da/train/javascript
+
+    {
+
+        class Cube {
+            constructor(length) {
+                this.length = length
+                this.surfaceArea
+                this.volume
+            }
+
+            get surfaceArea() {
+                return (this.length * this.length) * 6
+            }
+
+            set surfaceArea(value) {
+                this.length = Math.sqrt(value / 6)
+            }
+
+            get volume() {
+                return this.length * this.length * this.length
+            }
+
+
+
+        }
+        var cube = new Cube(1);
+        console.log(cube.length, 1);
+        console.log(cube.surfaceArea, 6);
+        console.log(cube.volume, 1);
+        cube.length = 2;
+        console.log(cube.surfaceArea, 24);
+        console.log(cube.volume, 8);
+        cube.surfaceArea = 54;
+        console.log(cube.length, 3);
+        console.log(cube.volume, 27);
+        cube.surfaceArea = 96;
+    }
+
+
+    //https://www.codewars.com/kata/5784c8116211383b5f0001d3/train/javascript
+    {
+        class File {
+            constructor(fullName, contents) {
+                this._fullName = fullName
+                this.contents = contents
+                this.filename = fullName.split('.')[0]
+                this.extension = fullName.split('.')[1]
+                this.line
+                this.index = 0
+
+            }
+            write(str) {
+                this.contents += str + '\n';
+            }
+            getContents() {
+                return this.contents
+            }
+            gets() {
+                this.line = this.contents.split('\n')[this.index];
+                this.index++
+                console.log(this.line)
+                return this
+
+            }
+            // get _fullName() {
+            //     return this._fullName;
+            // }
+        }
+
+
+        var myFile = new File("example.txt", "sss\nasdasd\nasdasd");
+        console.log(myFile.gets().gets())
+
+
+
+    }
+
+
+    //https://www.codewars.com/kata/525d50d2037b7acd6e000534/train/javascript
+    {
+        var numbers = [1, 2, 3, 4, 5];
+
+        Array.prototype.square = function () {
+            return this.map(item => {
+                return item * item
+            })
+        }
+
+        Array.prototype.cube = function () {
+            return this.map(item => {
+                return Math.pow(item, 3)
+            })
+        }
+
+        Array.prototype.average = function () {
+            return this.reduce((acc, item) => {
+                return acc + item
+            }, 0) / this.length
+        }
+
+        Array.prototype.sum = function () {
+            return this.reduce((acc, item) => {
+                return acc + item
+            }, 0)
+        }
+
+        Array.prototype.even = function () {
+            return this.filter((item) => {
+                return item % 2 === 0;
+            })
+        }
+
+        Array.prototype.odd = function () {
+            return this.filter((item) => {
+                return item % 2 !== 0;
+            })
+        }
+
+    }
+
+    // https://www.codewars.com/kata/5411e3e95f3a7f6a7a0000e3/train/javascript
+
+    {
+
+        Array.prototype.reduce = function (process, initial) {
+            let result = initial
+
+            for (let i = 0; i < this.length; i++) {
+                let type = typeof this[i] === 'number' ? 0 : ''
+                result = process(result ? result : type, this[i])
+            }
+
+            return result
+        }
+
+        console.log(
+
+            [1, 2, 3].reduce((acc, item) => {
+                return acc + item
+            })
+
+        )
+
+    }
+
+
+    // https://www.codewars.com/kata/527a6e602a7db3456e000a2b/train/javascript 
+    {
+        var obj = {
+            person: {
+                name: 'joe',
+                history: {
+                    hometown: 'bratislava',
+                    bio: {
+                        funFact: 'I like fishing.'
+                    }
+                }
+            }
+        };
+
+
+        Object.prototype.hash = function (string) {
+            let paths = string.split('.');
+          
+            for (let i = 0; i < paths.length; i++) {
+
+                if (!this.hasOwnProperty(paths[i])) {
+                    return undefined
+                }
+                
+                return eval(`${this}.${string}`)
+            }
+         
+
+        }
+
+        console.log(obj.hash('person.name')) // 'joe'
+        obj.hash('person.history.bio'); // { funFact: 'I like fishing.' }
+        obj.hash('person.history.homeStreet'); // undefined
+        obj.hash('person.animal.pet.needNoseAntEater'); // undefined
+    }
+
+}
